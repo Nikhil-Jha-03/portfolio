@@ -29,9 +29,10 @@ app.post("/sendEmail", async (req, res) => {
 
     try {
         const info = await transporter.sendMail({
-            from: email,
+            from: `"${email}" <${process.env.EMAIL}>`,
+            replyTo: email,
             to: process.env.EMAIL,
-            subject: "New Contact Message from Portfolio",
+            subject: `New Contact Message from Portfolio`,
             text: message,
         });
 
